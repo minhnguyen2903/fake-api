@@ -69,11 +69,11 @@ app.post('/api/questions', (req, res) => {
   ])
 })
 
-app.get("/api/applicant/reference/init", (req, res) => {
+app.get("/api/applicant/reference/:id", (req, res) => {
   console.log("init");
   res.json({
     applicantInfo: {
-      id: "1",
+      id: req.params.id,
       firstName: "Minh",
       lastName: "Nguyen",
       age: "23",
@@ -160,6 +160,10 @@ app.get("/api/applicant/reference/init", (req, res) => {
 
 app.post("/api/interview-question", (req, res) => {
   console.log(req.body);
+  if(req.body.email === 'denvl585@gmail.com') {
+    res.status(409).send("Email is existed in database");
+    return;
+  }
   res.json({
     applicantInfo: req.body,
     interviewQuestions: [
@@ -220,7 +224,9 @@ app.post("/api/interview-question", (req, res) => {
 
 app.post("/api/applicant", (req, res) => {
   console.log(req.body.interviewQuestions[2].questions);
-  res.status("200").send("Applicant added successfully");
+  res.status("200").json({
+    applicantId: "1232asdqS12"
+  });
 });
 
 app.post("/api/referenceEvaluate", (req, res) => {
