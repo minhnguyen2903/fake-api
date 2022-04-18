@@ -224,9 +224,7 @@ app.post("/api/interview-question", (req, res) => {
 
 app.post("/api/applicant", (req, res) => {
   console.log(req.body.interviewQuestions[2].questions);
-  res.status("200").json({
-    applicantId: "1232asdqS12"
-  });
+  res.status("200").send("Applicant added successfully");
 });
 
 app.post("/api/referenceEvaluate", (req, res) => {
